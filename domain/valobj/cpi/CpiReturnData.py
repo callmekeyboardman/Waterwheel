@@ -14,7 +14,7 @@ class CpiReturnData:
 
     _cpi_data_map: dict
     _zb_names: []
-    _sj_names: []
+    _sj_codes: []
     _values: []
 
     def __init__(self, obj: dict):
@@ -62,7 +62,6 @@ class CpiReturnData:
             self._cpi_data_map[key] = sorted_list
 
     # 返回cpi数据的 指标名称列表
-    # @param cpi_data_map() 方法返回的结果
     def _init_zb_names(self):
         zb_codes = self._cpi_data_map.keys()
 
@@ -75,22 +74,15 @@ class CpiReturnData:
                     break
 
     # 返回cpi数据的 时间列表
-    # @param cpi_data_map() 方法返回的结果
     def _init_sj_names(self):
         # 取出其中一个数据的 sj 列表即可
-        sj_codes = []
+        self._sj_codes = []
         for key in self._cpi_data_map.keys():
             value_list = self._cpi_data_map[key]
             for data in value_list:
-                sj_codes.append(data['sj'])
+                self._sj_codes.append(data['sj'])
             break
-        self._sj_names = []
-        for sj_code in sj_codes:
-            for wd_node in self._wdnodes:
-                node_map = wd_node.node_map()
-                if sj_code in node_map:
-                    self._sj_names.append(node_map[sj_code])
-                    break
+        self._sj_codes = sorted(self._sj_codes)
 
     def _init_values(self):
         self._values = []
@@ -103,8 +95,8 @@ class CpiReturnData:
     def get_zb_names(self):
         return self._zb_names
 
-    def get_sj_names(self):
-        return self._sj_names
+    def get_sj_codes(self):
+        return self._sj_codes
 
     def get_values(self):
         return self._values

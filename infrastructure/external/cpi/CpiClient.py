@@ -5,7 +5,7 @@ from datetime import datetime
 
 import requests
 
-from domain.external.ICpiClient import ICpiClient
+from domain.external.cpi.ICpiClient import ICpiClient
 from infrastructure.external.cpi.CpiReturnResponse import CpiReturnResponse
 from infrastructure.utils import json_util
 

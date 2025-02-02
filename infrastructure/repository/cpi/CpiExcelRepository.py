@@ -11,7 +11,7 @@ class CpiExcelRepository(ICpiRepository):
         # 行名称 指标名称
         row_names = return_data.get_zb_names()
         # 列名称 时间
-        col_names = return_data.get_sj_names()
+        col_names = return_data.get_sj_codes()
         # 数据列表
         values = return_data.get_values()
         # 保存数据
