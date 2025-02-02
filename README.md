@@ -31,3 +31,10 @@
 > pip install openpyxl
 > pip install requests
 > ```
+
+# 已有功能
+
+1、CpiService
+> 20250202
+
+查询 2021~至今 每个月的 CPI 数据，导出 excel、绘制同比值趋势图表。
