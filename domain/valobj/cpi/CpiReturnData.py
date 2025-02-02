@@ -6,11 +6,16 @@ from domain.valobj.cpi.CpiReturnWdNode import CpiReturnWdNode
 
 class CpiReturnData:
     # 总数
-    hasdatacount: int
+    _hasdatacount: int
     # 数据集，按照月份，从当前月向前排序
-    datanodes: List[CpiReturnDataNode]
+    _datanodes: List[CpiReturnDataNode]
     # 指标集
-    wdnodes: List[CpiReturnWdNode]
+    _wdnodes: List[CpiReturnWdNode]
+
+    _cpi_data_map: dict
+    _zb_names: []
+    _sj_names: []
+    _values: []
 
     def __init__(self, obj: dict):
         self._hasdatacount = obj['hasdatacount']
@@ -25,82 +30,81 @@ class CpiReturnData:
             wdnodes.append(CpiReturnWdNode(wdnode))
         self._wdnodes = wdnodes
 
-    @property
-    def hasdatacount(self):
-        return self._hasdatacount
+        self._init_data()
 
-    @hasdatacount.setter
-    def hasdatacount(self, hasdatacount: int):
-        self._hasdatacount = hasdatacount
-
-    @property
-    def datanodes(self):
-        return self._datanodes
-
-    @datanodes.setter
-    def datanodes(self, datanodes: List[CpiReturnDataNode]):
-        self._datanodes = datanodes
-
-    @property
-    def wdnodes(self):
-        return self._wdnodes
-
-    @wdnodes.setter
-    def wdnodes(self, wdnodes: List[CpiReturnWdNode]):
-        self._wdnodes = wdnodes
+    def _init_data(self):
+        self._init_cpi_data_map()
+        self._init_zb_names()
+        self._init_sj_names()
+        self._init_values()
 
     # 返回cpi数据 map
     # key: zb
     # value: list[data]
-    def cpi_data_map(self):
-        value_map = dict()
-        for data_node in self.datanodes:
+    def _init_cpi_data_map(self):
+        self._cpi_data_map = dict()
+
+        for data_node in self._datanodes:
             if data_node.is_cpi1() or data_node.is_cpi2():
                 zb_code = data_node.get_zb_code()
-                if zb_code not in value_map:
-                    value_map[zb_code] = []
+                if zb_code not in self._cpi_data_map:
+                    self._cpi_data_map[zb_code] = []
                 data = {
                     'zb': zb_code,
                     'sj': data_node.get_sj_code(),
                     'value': data_node.get_data()
                 }
-                value_map[zb_code].append(data)
+                self._cpi_data_map[zb_code].append(data)
         # 同一个指标下的数据,按照时间排序
-        for key in value_map.keys():
-            value_list = value_map[key]
+        for key in self._cpi_data_map.keys():
+            value_list = self._cpi_data_map[key]
             sorted_list = sorted(value_list, key=lambda x: x['sj'])
-            value_map[key] = sorted_list
-        return value_map
+            self._cpi_data_map[key] = sorted_list
 
     # 返回cpi数据的 指标名称列表
     # @param cpi_data_map() 方法返回的结果
-    def cpi_zb_names(self, cpi_data_map: dict):
-        zb_codes = cpi_data_map.keys()
+    def _init_zb_names(self):
+        zb_codes = self._cpi_data_map.keys()
 
-        zb_names = []
+        self._zb_names = []
         for zb_code in zb_codes:
-            for wd_node in self.wdnodes:
+            for wd_node in self._wdnodes:
                 node_map = wd_node.node_map()
                 if zb_code in node_map:
-                    zb_names.append(node_map[zb_code])
+                    self._zb_names.append(node_map[zb_code])
                     break
-        return zb_names
 
     # 返回cpi数据的 时间列表
     # @param cpi_data_map() 方法返回的结果
-    def cpi_sj_names(self, cpi_data_map: dict):
+    def _init_sj_names(self):
         # 取出其中一个数据的 sj 列表即可
         sj_codes = []
-        for key in cpi_data_map.keys():
-            value_list = cpi_data_map[key]
+        for key in self._cpi_data_map.keys():
+            value_list = self._cpi_data_map[key]
             for data in value_list:
                 sj_codes.append(data['sj'])
             break
-        sj_names = []
+        self._sj_names = []
         for sj_code in sj_codes:
-            for wd_node in self.wdnodes:
+            for wd_node in self._wdnodes:
                 node_map = wd_node.node_map()
                 if sj_code in node_map:
-                    sj_names.append(node_map[sj_code])
+                    self._sj_names.append(node_map[sj_code])
                     break
-        return sj_names
+
+    def _init_values(self):
+        self._values = []
+        for value in self._cpi_data_map.values():
+            sub_value = []
+            for data in value:
+                sub_value.append(data['value'])
+            self._values.append(sub_value)
+
+    def get_zb_names(self):
+        return self._zb_names
+
+    def get_sj_names(self):
+        return self._sj_names
+
+    def get_values(self):
+        return self._values
