@@ -1,7 +1,4 @@
-from domain.valobj.cpi import CpiCode
-
-
-class CpiReturnDataNode:
+class NsReturnDataNode:
     # code，由 wds 中的指标 code 和 时间 code 拼接而成，比如 zb.A01010G01_sj.202412
     code: str
     # 数据
@@ -17,14 +14,6 @@ class CpiReturnDataNode:
     # 返回具体的数值，小数
     def get_data(self):
         return float(self._data['data'])
-
-    # 是否是 居民消费价格指数
-    def is_cpi1(self):
-        return CpiCode.is_cpi1(self.get_zb_code())
-
-    # 不包括食品和能源居民消费价格指数
-    def is_cpi2(self):
-        return CpiCode.is_cpi2(self.get_zb_code())
 
     # node 的 code
     def get_zb_code(self):

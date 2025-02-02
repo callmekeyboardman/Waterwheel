@@ -5,17 +5,17 @@ from datetime import datetime
 
 import requests
 
-from domain.external.cpi.ICpiClient import ICpiClient
-from infrastructure.external.cpi.CpiReturnResponse import CpiReturnResponse
+from domain.external.ns.INsClient import INsClient
+from infrastructure.external.ns.NsReturnResponse import NsReturnResponse
 from infrastructure.utils import json_util
 
 
-class CpiClient(ICpiClient):
+class CpiClient(INsClient):
     PATH = "https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgyd&rowcode=zb&colcode=sj&wds=[]&dfwds=%s&k1=%s"
 
-    def read_cpi_data(self):
+    def read_data(self):
         result = requests.get(self.url())
-        response = CpiReturnResponse(json_util.read(result.text))
+        response = NsReturnResponse(json_util.read(result.text))
 
         if not response.is_ok():
             logging.error("[CpiClient] 查询数据异常 " + response.returncode)

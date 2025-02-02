@@ -1,7 +1,7 @@
-class CpiReturnWdNode:
+class NsReturnWdNode:
     # 数据
     nodes: []
-    # node 的 code,对应 CpiReturnDataNode.wds.valuecode,比如 zb\sj
+    # node 的 code,比如 zb\sj
     wdcode: str
     # node 含义名称,比如 指标\时间
     wdname: str

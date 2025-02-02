@@ -2,19 +2,22 @@ from decimal import Decimal
 
 import matplotlib
 
-from domain.repository.cpi.ICpiRepository import ICpiRepository
-from domain.valobj.cpi.CpiReturnData import CpiReturnData
+from domain.repository.ns.INsRepository import INsRepository
+from domain.valobj.ns.NsReturnData import NsReturnData
+from infrastructure.repository.ns.cpi import CpiDataConverter
 from infrastructure.utils import plot_util
 
 matplotlib.use('TkAgg')
 
 
-class CpiChartRepository(ICpiRepository):
+class CpiChartRepository(INsRepository):
 
-    def save(self, return_data: CpiReturnData):
-        values = return_data.get_values()
-        zb_names = return_data.get_zb_names()
-        x_points = return_data.get_sj_codes()
+    def save(self, return_data: NsReturnData):
+        result = CpiDataConverter.convert(return_data)
+
+        values = result['values']
+        zb_names = result['row_names']
+        x_points = result['col_names']
 
         sub = Decimal(10000)
         divide = Decimal(100)

@@ -17,9 +17,9 @@ def draw_plot(x_points: [], y_points: [], labels: [],
 
     # 只有一根线
     if len(y_points) == 1:
-        plt.plot(x_points, y_points[0], color='orangered', linestyle='-', marker='o', label=labels[0])
+        plt.plot(x_points, y_points[0], color='royalblue', linestyle='-', marker='o', label=labels[0])
         for a, b in zip(x_points, y_points[0]):
-            plt.text(a, b, b, ha='center', va='bottom', color='orangered', size='13')
+            plt.text(a, b, b, ha='center', va='bottom', color='royalblue', size='13')
     # 有两根线
     elif len(y_points) == 2:
         plt.plot(x_points, y_points[0], color='orangered', linestyle='-', marker='o', label=labels[0])
