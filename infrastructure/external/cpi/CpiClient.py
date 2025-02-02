@@ -20,7 +20,7 @@ class CpiClient(ICpiClient):
         if not response.is_ok():
             logging.error("[CpiClient] 查询数据异常 " + response.returncode)
             raise Exception("[CpiClient] 查询数据异常")
-        return response
+        return response.returndata
 
     def url(self):
         value_codes = []

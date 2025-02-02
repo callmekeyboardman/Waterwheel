@@ -1,4 +1,5 @@
 # Excel 文件的工具类
+import logging
 import os
 
 from openpyxl import Workbook
@@ -40,4 +41,5 @@ def export(path, file_name, row_names, col_names, values):
     file_path = path + "\\" + file_name + ".xlsx"
     wb.save(file_path)
     # 输出后打开
+    logging.info("保存并打开 " + file_name)
     os.startfile(file_path)
