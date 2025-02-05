@@ -1,12 +1,12 @@
 import logging
 
-from infrastructure.external.ns.goldreserve.GoldReserveClient import GoldForeignClient
+from infrastructure.external.ns.goldreserve.GoldReserveClient import GoldReserveClient
 from infrastructure.repository.ns.goldreserve.GoldReserveChartRepository import GoldReserveChartRepository
 from infrastructure.repository.ns.goldreserve.GoldReserveExcelRepository import GoldReserveExcelRepository
 
 # 黄金储备
 if __name__ == "__main__":
-    client = GoldForeignClient()
+    client = GoldReserveClient()
     excelRepository = GoldReserveExcelRepository()
     chartRepository = GoldReserveChartRepository()
     try:

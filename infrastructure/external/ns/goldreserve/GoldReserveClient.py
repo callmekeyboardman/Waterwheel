@@ -8,7 +8,7 @@ from infrastructure.external.ns.NsReturnResponse import NsReturnResponse
 from infrastructure.utils import json_util
 
 
-class GoldForeignClient(INsClient):
+class GoldReserveClient(INsClient):
     PATH = ("https://data.stats.gov.cn/easyquery.htm?m=QueryData&dbcode=hgnd&rowcode=zb&colcode=sj&wds=["
             "]&dfwds=%s&k1=%s&h=1")
 
@@ -17,8 +17,8 @@ class GoldForeignClient(INsClient):
         response = NsReturnResponse(json_util.read(result.text))
 
         if not response.is_ok():
-            logging.error("[GoldForeignClient] 查询数据异常 " + response.returncode)
-            raise Exception("[GoldForeignClient] 查询数据异常")
+            logging.error("[GoldReserveClient] 查询数据异常 " + response.returncode)
+            raise Exception("[GoldReserveClient] 查询数据异常")
         return response.returndata
 
     def url(self):
