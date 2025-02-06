@@ -1,6 +1,6 @@
 import textwrap
 
-from infrastructure.external.ai.deepseek.DeepSeekAiClient import DeepSeekAiClient
+from infrastructure.ai.deepseek.external.DeepSeekAiClient import DeepSeekAiClient
 
 client = DeepSeekAiClient()
 

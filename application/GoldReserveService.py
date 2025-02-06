@@ -1,8 +1,8 @@
 import logging
 
-from infrastructure.external.ns.goldreserve.GoldReserveClient import GoldReserveClient
-from infrastructure.repository.ns.goldreserve.GoldReserveChartRepository import GoldReserveChartRepository
-from infrastructure.repository.ns.goldreserve.GoldReserveExcelRepository import GoldReserveExcelRepository
+from infrastructure.ns.goldreserve.external.GoldReserveClient import GoldReserveClient
+from infrastructure.ns.goldreserve.repository.GoldReserveChartRepository import GoldReserveChartRepository
+from infrastructure.ns.goldreserve.repository.GoldReserveExcelRepository import GoldReserveExcelRepository
 
 # 黄金储备
 if __name__ == "__main__":
