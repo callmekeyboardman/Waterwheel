@@ -4,37 +4,31 @@ from domain.ai.IAiClient import IAiClient
 from infrastructure.ai.deepseek.external.DeepSeekAiResponse import DeepSeekAiResponse
 from infrastructure.utils import json_util
 
-URL = "https://api.deepseek.com/chat/completions"
+URL = "https://api.siliconflow.cn/v1/chat/completions"
 # 替换成自己的
 APP_KEY = 'sk-xxx'
 
 HEADERS = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': 'Bearer ' + APP_KEY
+    "Authorization": 'Bearer ' + APP_KEY,
+    "Content-Type": "application/json"
 }
 
 PAY_LOAD = {
-    "model": "deepseek-chat",
-    "frequency_penalty": 0,
-    "max_tokens": 4096,
-    "presence_penalty": 0,
-    "response_format": {
-        "type": "text"
-    },
-    "stop": None,
+    "model": "deepseek-ai/DeepSeek-V3",
     "stream": False,
-    "stream_options": None,
-    "temperature": 1,
-    "top_p": 1,
-    "tools": None,
-    "tool_choice": "none",
-    "logprobs": False,
-    "top_logprobs": None
+    "max_tokens": 512,
+    "stop": None,
+    "temperature": 0.7,
+    "top_p": 0.7,
+    "top_k": 50,
+    "frequency_penalty": 0.5,
+    "n": 1,
+    "response_format": {"type": "text"},
+    "tools": None
 }
 
 
-class DeepSeekAiClient(IAiClient):
+class SiliconFlowAiClient(IAiClient):
     _messages = []
 
     def chat(self, prompt: str):
@@ -47,10 +41,10 @@ class DeepSeekAiClient(IAiClient):
         message = res.get_message()
         if message is None:
             return None
-        self._messages.append({"role": "user", "content": message.get_content()})
         return message
 
     def payload(self, prompt: str):
+        self._messages = []
         self._messages.append({"role": "user", "content": prompt})
         PAY_LOAD['messages'] = self._messages
         return json_util.write(PAY_LOAD)

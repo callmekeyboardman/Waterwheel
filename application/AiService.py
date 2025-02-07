@@ -1,8 +1,10 @@
 import textwrap
 
-from infrastructure.ai.deepseek.external.DeepSeekAiClient import DeepSeekAiClient
+# from infrastructure.ai.deepseek.external.DeepSeekAiClient import DeepSeekAiClient
+from infrastructure.ai.siliconflow.external.SiliconFlowAiClient import SiliconFlowAiClient
 
-client = DeepSeekAiClient()
+# client = DeepSeekAiClient()
+client = SiliconFlowAiClient()
 
 
 def print_text(text):
