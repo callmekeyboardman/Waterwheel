@@ -54,4 +54,5 @@
 4、AiService
 > 20250207
 
-支持 deepseek 多轮对话，需要在 client 中配置自己的 api_key。
+支持 deepseek API，需要在 client 中配置自己的 api_key。
+支持 siliconFlow API，需要在 client 中配置自己的 api_key。
