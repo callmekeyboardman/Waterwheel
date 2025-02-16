@@ -43,7 +43,7 @@ def draw_plot(x_points: [], y_points: [], labels: [],
     plt.xlabel(x_label, fontdict=font_dict)
     plt.ylabel(y_label, fontdict=font_dict)
     plt.grid()
-    plt.legend()
+    plt.legend(loc='lower right')
     plt.show()
 
 
@@ -76,6 +76,6 @@ def draw_simple_plot(x_points: [], y_points: [], labels: [],
     plt.title(title, fontdict=font_dict)
     plt.xlabel(x_label, fontdict=font_dict)
     plt.ylabel(y_label, fontdict=font_dict)
-    plt.legend()
+    plt.legend(loc='lower right')
     plt.gca().xaxis.set_major_locator(plt.MultipleLocator(12))
     plt.show()

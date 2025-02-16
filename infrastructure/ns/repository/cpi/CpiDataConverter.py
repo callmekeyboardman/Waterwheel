@@ -16,7 +16,7 @@ def convert(return_data: NsReturnData):
     for i in range(len(zb_names)):
         row_name = zb_names[i]
         if NsCode.is_cpi1(row_name) or NsCode.is_cpi2(row_name):
-            row_names.append(row_name)
+            row_names.append(row_name.split('(')[0])
             value_list.append(values[i])
     result = {
         'row_names': row_names,

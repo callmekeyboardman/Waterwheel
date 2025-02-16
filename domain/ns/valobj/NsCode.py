@@ -1,11 +1,11 @@
 # 居民消费价格指数
 def is_cpi1(value):
-    return value == 'A01010G01' or value == '居民消费价格指数'
+    return value == 'A01010G01' or value == '居民消费价格指数(上年同月=100)'
 
 
 # 不包括食品和能源居民消费价格指数
 def is_cpi2(value):
-    return value == 'A01010G0D' or value == '不包括食品和能源居民消费价格指数'
+    return value == 'A01010G0D' or value == '不包括食品和能源居民消费价格指数(上年同月=100)'
 
 # 黄金储备
 def is_gold(value):
