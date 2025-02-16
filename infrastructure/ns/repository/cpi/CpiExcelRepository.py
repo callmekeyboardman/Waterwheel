@@ -1,7 +1,7 @@
 from domain.ns.repository.INsRepository import INsRepository
 from domain.ns.valobj.NsReturnData import NsReturnData
 from infrastructure.data import data_info
-from infrastructure.ns.cpi.repository import CpiDataConverter
+from infrastructure.ns.repository.cpi import CpiDataConverter
 from infrastructure.utils import excel_util
 
 

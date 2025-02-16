@@ -1,8 +1,8 @@
 import logging
 
-from infrastructure.ns.cpi.external.CpiClient import CpiClient
-from infrastructure.ns.cpi.repository.CpiChartRepository import CpiChartRepository
-from infrastructure.ns.cpi.repository.CpiExcelRepository import CpiExcelRepository
+from infrastructure.ns.external.CpiClient import CpiClient
+from infrastructure.ns.repository.cpi.CpiChartRepository import CpiChartRepository
+from infrastructure.ns.repository.cpi.CpiExcelRepository import CpiExcelRepository
 
 # CPI 统计数据
 if __name__ == "__main__":

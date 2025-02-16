@@ -4,7 +4,7 @@ import matplotlib
 
 from domain.ns.repository.INsRepository import INsRepository
 from domain.ns.valobj.NsReturnData import NsReturnData
-from infrastructure.ns.goldreserve.repository import GoldReserveDataConverter
+from infrastructure.ns.repository.goldreserve import GoldReserveDataConverter
 from infrastructure.utils import plot_util
 
 matplotlib.use('TkAgg')

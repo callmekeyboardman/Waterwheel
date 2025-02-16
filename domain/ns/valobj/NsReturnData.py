@@ -46,7 +46,7 @@ class NsReturnWdNode:
     def node_map(self):
         node_map = dict()
         for node in self._nodes:
-            node_map[node['code']] = node['name'].split('(')[0]
+            node_map[node['code']] = node['name']
         return node_map
 
 

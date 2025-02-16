@@ -56,3 +56,8 @@
 
 支持 deepseek API，需要在 client 中配置自己的 api_key。
 支持 siliconFlow API，需要在 client 中配置自己的 api_key。
+
+5、M1M2Service
+> 20250216
+
+支持拉取 M1、M2 同比增速数据，最新一个月可能为0.

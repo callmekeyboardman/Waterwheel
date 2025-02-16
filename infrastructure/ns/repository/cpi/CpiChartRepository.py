@@ -4,7 +4,7 @@ import matplotlib
 
 from domain.ns.repository.INsRepository import INsRepository
 from domain.ns.valobj.NsReturnData import NsReturnData
-from infrastructure.ns.cpi.repository import CpiDataConverter
+from infrastructure.ns.repository.cpi import CpiDataConverter
 from infrastructure.utils import plot_util
 
 matplotlib.use('TkAgg')

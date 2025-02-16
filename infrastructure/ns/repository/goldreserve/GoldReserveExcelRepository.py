@@ -1,7 +1,7 @@
 from domain.ns.repository.INsRepository import INsRepository
 from domain.ns.valobj.NsReturnData import NsReturnData
 from infrastructure.data import data_info
-from infrastructure.ns.goldreserve.repository import GoldReserveDataConverter
+from infrastructure.ns.repository.goldreserve import GoldReserveDataConverter
 from infrastructure.utils import excel_util
 
 
